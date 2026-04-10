@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: #0f1923; -fx-padding: 0;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.grocery_management_system.controller.StockController">
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <Label text="Stock Alerts" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #f0f4f8;"/>
+            <Label text="Products that need restocking" style="-fx-font-size: 12; -fx-text-fill: #6b7fa3;"/>
+        </VBox>
+        <Button text="↻  Refresh" onAction="#refresh"
+                style="-fx-background-color: #2a3d52; -fx-text-fill: #a8b9cc; -fx-background-radius: 8; -fx-padding: 9 18; -fx-cursor: hand; -fx-font-size: 12;"/>
+    </HBox>
+
+    <!-- Alert banner -->
+    <HBox spacing="10" alignment="CENTER_LEFT"
+          style="-fx-background-color: rgba(255,107,107,0.08); -fx-background-radius: 10; -fx-padding: 12 18; -fx-border-color: rgba(255,107,107,0.25); -fx-border-radius: 10; -fx-border-width: 1;">
+        <Label text="⚠️" style="-fx-font-size: 16;"/>
+        <VBox spacing="2">
+            <Label fx:id="countLabel" text="" style="-fx-font-weight: bold; -fx-text-fill: #ff6b6b; -fx-font-size: 13;"/>
+            <Label text="Select a product below and enter a quantity to restock it."
+                   style="-fx-text-fill: #6b7fa3; -fx-font-size: 12;" wrapText="true"/>
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="stockTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: #1a2634; -fx-background-radius: 10; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1; -fx-table-cell-border-color: #2a3d52;">
+        <columns>
+            <TableColumn fx:id="colName"     text="Product Name"  prefWidth="260"/>
+            <TableColumn fx:id="colCategory" text="Category"      prefWidth="140"/>
+            <TableColumn fx:id="colQty"      text="Current Stock" prefWidth="130"/>
+            <TableColumn fx:id="colMin"      text="Min Required"  prefWidth="130"/>
+        </columns>
+        <placeholder>
+            <Label text="✓  All products have sufficient stock." style="-fx-text-fill: #00c896; -fx-font-size: 13;"/>
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="12" alignment="CENTER_LEFT"
+          style="-fx-background-color: #1a2634; -fx-background-radius: 10; -fx-padding: 14 18; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+        <Label text="Restock selected product by:" style="-fx-text-fill: #a8b9cc; -fx-font-size: 13;"/>
+        <TextField fx:id="restockQtyField" promptText="quantity" prefWidth="110"
+                   style="-fx-background-color: #0f1923; -fx-background-radius: 8; -fx-text-fill: #f0f4f8; -fx-border-color: #2a3d52; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 9 12; -fx-font-size: 13;"/>
+        <Button text="Restock" onAction="#restock"
+                style="-fx-background-color: #00c896; -fx-text-fill: #0f1923; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 10 24; -fx-cursor: hand; -fx-font-size: 13;"/>
+        <Label fx:id="statusLabel" text="" style="-fx-text-fill: #00c896; -fx-font-size: 12;"/>
+    </HBox>
+</VBox>

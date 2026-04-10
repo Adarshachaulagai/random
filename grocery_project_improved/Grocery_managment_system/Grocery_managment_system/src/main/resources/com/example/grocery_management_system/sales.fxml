@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: #0f1923; -fx-padding: 0;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.grocery_management_system.controller.SalesController">
+
+    <VBox spacing="3">
+        <Label text="Sales / Billing" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #f0f4f8;"/>
+        <Label text="Create a new sale and generate bill" style="-fx-font-size: 12; -fx-text-fill: #6b7fa3;"/>
+    </VBox>
+
+    <!-- Add to cart bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT"
+          style="-fx-background-color: #1a2634; -fx-background-radius: 10; -fx-padding: 14 18; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+        <Label text="PRODUCT" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+        <ComboBox fx:id="productCombo" prefWidth="340" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #0f1923; -fx-background-radius: 8; -fx-border-color: #2a3d52; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-font-size: 13;"/>
+        <Label text="QTY" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+        <TextField fx:id="qtyField" prefWidth="80" promptText="1"
+                   style="-fx-background-color: #0f1923; -fx-background-radius: 8; -fx-text-fill: #f0f4f8; -fx-border-color: #2a3d52; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 9 12; -fx-font-size: 13;"/>
+        <Button text="Add to Cart" onAction="#addToCart"
+                style="-fx-background-color: #00c896; -fx-text-fill: #0f1923; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 10 22; -fx-cursor: hand; -fx-font-size: 13;"/>
+    </HBox>
+
+    <!-- Cart table -->
+    <TableView fx:id="cartTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: #1a2634; -fx-background-radius: 10; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1; -fx-table-cell-border-color: #2a3d52;">
+        <columns>
+            <TableColumn fx:id="colProduct"   text="Product Name"     prefWidth="300"/>
+            <TableColumn fx:id="colUnitPrice" text="Unit Price (Rs.)" prefWidth="160"/>
+            <TableColumn fx:id="colQty"       text="Qty"              prefWidth="90"/>
+            <TableColumn fx:id="colSubtotal"  text="Subtotal (Rs.)"   prefWidth="160"/>
+        </columns>
+        <placeholder>
+            <Label text="Cart is empty — select a product and click Add to Cart."
+                   style="-fx-text-fill: #6b7fa3; -fx-font-size: 13;"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Footer bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT"
+          style="-fx-background-color: #1a2634; -fx-background-radius: 10; -fx-padding: 14 18; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+        <VBox spacing="2">
+            <Label text="TOTAL AMOUNT" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+            <Label fx:id="totalLabel" text="Rs. 0.00" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #00c896;"/>
+        </VBox>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Label fx:id="messageLabel" text="" style="-fx-text-fill: #00c896; -fx-font-size: 12;"/>
+        <Button text="Remove Item" onAction="#removeFromCart"
+                style="-fx-background-color: #2a3d52; -fx-text-fill: #a8b9cc; -fx-background-radius: 8; -fx-padding: 9 16; -fx-cursor: hand; -fx-font-size: 12;"/>
+        <Button text="Clear Cart" onAction="#clearCart"
+                style="-fx-background-color: rgba(255,107,107,0.1); -fx-text-fill: #ff6b6b; -fx-background-radius: 8; -fx-padding: 9 16; -fx-cursor: hand; -fx-font-size: 12; -fx-border-color: rgba(255,107,107,0.2); -fx-border-radius: 8; -fx-border-width: 1;"/>
+        <Button text="✓  Complete Sale" onAction="#completeSale"
+                style="-fx-background-color: #00c896; -fx-text-fill: #0f1923; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 10 24; -fx-cursor: hand; -fx-font-size: 13;"/>
+    </HBox>
+</VBox>

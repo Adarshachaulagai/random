@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.grocery_management_system.controller.DashboardController"
+      style="-fx-background-color: #0f1923;">
+
+    <!-- SIDEBAR -->
+    <VBox style="-fx-background-color: #1a2634; -fx-padding: 0;" prefWidth="210" spacing="2" minHeight="600">
+
+        <!-- Brand -->
+        <VBox style="-fx-background-color: #0f1923; -fx-padding: 22 20 18 20;" spacing="4">
+            <Label text="🛒 GrocerPro" style="-fx-text-fill: #f0f4f8; -fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Label fx:id="welcomeLabel" text="" style="-fx-text-fill: #00c896; -fx-font-size: 11;" wrapText="true"/>
+        </VBox>
+
+        <HBox style="-fx-background-color: #2a3d52; -fx-pref-height: 1; -fx-min-height: 1;"/>
+
+        <VBox spacing="2" style="-fx-padding: 12 8 8 8;">
+            <Label text="NAVIGATION" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #3d5068; -fx-padding: 8 8 4 8;"/>
+
+            <Button text="📦  Products" onAction="#showProducts" maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: #a8b9cc; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;"/>
+            <Button text="➕  Add Product" onAction="#showAddProduct" maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: #a8b9cc; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;"/>
+            <Button text="🧾  Sales / Bill" onAction="#showSales" maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: #a8b9cc; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;"/>
+            <Button text="📊  Today's Sales" onAction="#showTodaySales" maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: #a8b9cc; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;"/>
+            <Button text="⚠️  Stock Alerts" onAction="#showStockAlerts" maxWidth="Infinity"
+                    style="-fx-background-color: transparent; -fx-text-fill: #a8b9cc; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;"/>
+        </VBox>
+
+        <VBox VBox.vgrow="ALWAYS"/>
+
+        <HBox style="-fx-background-color: #2a3d52; -fx-pref-height: 1; -fx-min-height: 1;"/>
+        <VBox style="-fx-padding: 8;">
+            <Button text="⏻  Logout" onAction="#logout" maxWidth="Infinity"
+                    style="-fx-background-color: rgba(255,107,107,0.08); -fx-text-fill: #ff6b6b; -fx-alignment: CENTER_LEFT; -fx-padding: 10 16; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: rgba(255,107,107,0.15); -fx-border-radius: 8; -fx-border-width: 1;"/>
+        </VBox>
+    </VBox>
+
+    <!-- MAIN AREA -->
+    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: #0f1923;">
+
+        <!-- STATS BAR -->
+        <HBox style="-fx-background-color: #1a2634; -fx-padding: 16 28; -fx-border-color: #2a3d52; -fx-border-width: 0 0 1 0;" spacing="24" alignment="CENTER_LEFT">
+
+            <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-background-color: #0f1923; -fx-background-radius: 10; -fx-padding: 14 22; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+                <Label text="TOTAL PRODUCTS" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+                <Label fx:id="totalProductsLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #f0f4f8;"/>
+            </VBox>
+
+            <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-background-color: #0f1923; -fx-background-radius: 10; -fx-padding: 14 22; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+                <Label text="LOW STOCK" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+                <Label fx:id="lowStockLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #ff6b6b;"/>
+            </VBox>
+
+            <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-background-color: #0f1923; -fx-background-radius: 10; -fx-padding: 14 22; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+                <Label text="TODAY'S SALES" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+                <Label fx:id="todaySalesLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #00c896;"/>
+            </VBox>
+
+            <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-background-color: #0f1923; -fx-background-radius: 10; -fx-padding: 14 22; -fx-border-color: #2a3d52; -fx-border-radius: 10; -fx-border-width: 1;">
+                <Label text="TODAY'S REVENUE" style="-fx-font-size: 9; -fx-font-weight: bold; -fx-text-fill: #6b7fa3;"/>
+                <Label fx:id="todayRevenueLabel" text="Rs. 0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #4fa3e0;"/>
+            </VBox>
+        </HBox>
+
+        <!-- CONTENT -->
+        <AnchorPane fx:id="contentPane" VBox.vgrow="ALWAYS" style="-fx-background-color: #0f1923; -fx-padding: 24;"/>
+    </VBox>
+</HBox>
